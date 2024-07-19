@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk add --no-cache skopeo umoci bash
+RUN apk update && apk add --no-cache skopeo umoci bash coreutils
 COPY push_image.sh /usr/local/bin/push_image.sh
 
 COPY run-task/run-task /usr/local/bin/run-task
