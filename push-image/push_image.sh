@@ -2,11 +2,11 @@
 
 set -e
 
-test NAME
-test DOCKER_REPO
-test MOZ_FETCHES_DIR
-test VCS_HEAD_REV
-test VCS_HEAD_REPOSITORY
+test $NAME
+test $DOCKER_REPO
+test $MOZ_FETCHES_DIR
+test $VCS_HEAD_REV
+test $VCS_HEAD_REPOSITORY
 
 echo "=== Generating dockercfg ==="
 
