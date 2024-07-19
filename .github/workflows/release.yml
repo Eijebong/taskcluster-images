@@ -28,5 +28,5 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/eijebong/taskcluster-images/${{ matrix.name }}:${{ github.ref_name }}
-          context: ${{ matrix.name }}
+          tags: ghcr.io/eijebong/taskcluster-images/${{ matrix.image }}:${{ github.ref_name }}
+          context: ${{ matrix.image }}
