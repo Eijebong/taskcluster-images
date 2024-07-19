@@ -10,6 +10,11 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      matrix:
+        image:
+          - decision-task
+          - push-image
 
     runs-on: ubuntu-latest
     steps:
@@ -23,5 +28,5 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/eijebong/taskcluster-images/decision-task:${{ github.ref_name }}
-          context: decision-task
+          tags: ghcr.io/eijebong/taskcluster-images/${{ matrix.name }}:${{ github.ref_name }}
+          context: ${{ matrix.name }}
