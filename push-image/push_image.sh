@@ -12,7 +12,7 @@ echo "=== Generating dockercfg ==="
 
 PASSWORD_URL="http://taskcluster/secrets/v1/secret/github_deploy"
 install -m 600 /dev/null ${HOME}/.dockercfg
-curl ${PASSWORD_URL} | jq '.secret.dockercfg' > ${HOME}/.dockercfg
+curl ${PASSWORD_URL} | jq -r '.secret.dockercfg' > ${HOME}/.dockercfg
 export REGISTRY_AUTH_FILE=$HOME/.dockercfg
 
 echo "=== Preparing docker image ==="
