@@ -30,12 +30,12 @@ cat > version.json <<EOF
     "build": "${TASKCLUSTER_ROOT_URL}/tasks/${TASK_ID}"
 }
 EOF
-DOCKER_TAG=${VCS_HEAD_REV}
+COMMIT_COUNT=$(cd $VCS_PATH && git rev-list ${VCS_HEAD_REF} --count)
+DOCKER_TAG=${VCS_HEAD_REF}-${COMMIT_COUNT}
 
 umoci insert --image ${NAME}:final version.json /version.json
 
 echo "=== Pushing image ==="
 
 skopeo copy oci:${NAME}:final docker://$DOCKER_REPO:$DOCKER_TAG
-skopeo copy oci:${NAME}:final docker://$DOCKER_REPO:latest
 
