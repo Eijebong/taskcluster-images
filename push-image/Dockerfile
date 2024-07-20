@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk add --no-cache skopeo umoci bash coreutils python3 curl jq zstd git openss-client
+RUN apk update && apk add --no-cache skopeo umoci bash coreutils python3 curl jq zstd git openssh-client
 COPY push_image.sh /usr/local/bin/push_image.sh
 
 COPY run-task/run-task /usr/local/bin/run-task
