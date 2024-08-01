@@ -1,4 +1,4 @@
-FROM mozillareleases/taskgraph:decision-v9.2.0
+FROM mozillareleases/taskgraph:decision-v10.0.2
 LABEL org.opencontainers.image.source=https://github.com/eijebong/taskcluster-decision-task-image
 
 RUN apt update && apt install -y openssh-client
