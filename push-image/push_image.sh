@@ -18,16 +18,7 @@ echo "=== Preparing docker image ==="
 
 cp -R $MOZ_FETCHES_DIR/* $VCS_PATH/taskcluster/docker/${NAME}
 
-/kaniko-bootstrap/executor --context "dir://$VCS_PATH/taskcluster/docker/${NAME}" \
-    --destination image \
-    --dockerfile "$VCS_PATH/taskcluster/docker/${NAME}/Dockerfile" \
-    --no-push --no-push-cache \
-    --cache=true --cache-dir=/workspace/cache \
-    --cache-repo=oci:/workspace/repo \
-    --compressed-caching=false \
-    --ignore-var-run=false \
-    --single-snapshot \
-    --tar-path /workspace/image.tar
+buildah build -f "$VCS_PATH/taskcluster/docker/${NAME}/Dockerfile" "$VCS_PATH/taskcluster/docker/${NAME}" -o type=local,dest=/workspace/image.tar
 
 skopeo copy docker-archive:/workspace/image.tar oci:${NAME}:final
 
