@@ -21,8 +21,8 @@ COPY --from=image_builder /kaniko-bootstrap/containers/policy.json /kaniko-boots
 RUN mkdir /builds && \
     addgroup -g 1000 worker && \
     adduser -h /builds/worker -s /bin/bash -D worker -G worker -u 1000 && \
-    mkdir /builds/worker/artifacts && \
-    chown worker:worker /builds/worker/artifacts
+    mkdir /builds/worker/artifacts /workspace && \
+    chown worker:worker /builds/worker/artifacts /workspace
 
 ENV SHELL=/bin/bash \
     HOME=/builds/worker \
