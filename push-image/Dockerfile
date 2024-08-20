@@ -30,3 +30,4 @@ ENV SHELL=/bin/bash \
 
 WORKDIR /workspace
 VOLUME /var/lib/containers
+VOLUME /workspace/cache
