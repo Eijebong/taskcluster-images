@@ -4,7 +4,6 @@ set -e
 
 test $NAME
 test $DOCKER_REPO
-test $MOZ_FETCHES_DIR
 test $VCS_HEAD_REV
 test $VCS_HEAD_REPOSITORY
 
@@ -17,11 +16,8 @@ export REGISTRY_AUTH_FILE=$HOME/.dockercfg
 
 echo "=== Preparing docker image ==="
 
-cd $MOZ_FETCHES_DIR
-unzstd image.tar.zst
-
-# Create an OCI copy of image in order umoci can patch it
-skopeo copy docker-archive:image.tar oci:${NAME}:final
+cp -R $MOZ_FETCHES_DIR/* $VCS_PATH/taskcluster/docker/${NAME}
+cd $VCS_PATH/taskcluster/docker/${NAME} && podman build -t oci:${NAME}:final .
 
 cat > version.json <<EOF
 {
