@@ -21,3 +21,4 @@ ENV SHELL=/bin/bash \
     PATH=/usr/local/bin:/kaniko:/bin:/usr/bin
 
 WORKDIR /workspace
+VOLUME /var/lib/containers
