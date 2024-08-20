@@ -8,7 +8,18 @@ COPY run-task/fetch-content /usr/local/bin/fetch-content
 COPY run-task/robustcheckout.py /usr/local/mercurial/robustcheckout.py
 COPY run-task/hgrc /etc/mercurial/hgrc.d/mozilla.rc
 
-RUN echo "root:100000:65536" > /etc/subuid
-RUN echo "root:100000:65536" > /etc/subgid
+# Add worker user
+RUN mkdir /builds && \
+    addgroup -g 1000 worker && \
+    adduser -h /builds/worker -s /bin/bash -D worker -G worker -u 1000 && \
+    mkdir /builds/worker/artifacts /workspace && \
+    chown worker:worker /builds/worker/artifacts /workspace
+
+RUN echo "worker:100000:65536" > /etc/subuid
+RUN echo "worker:100000:65536" > /etc/subgid
+
+ENV SHELL=/bin/bash \
+    HOME=/builds/worker \
+    USER=worker
 
 VOLUME /var/lib/containers
