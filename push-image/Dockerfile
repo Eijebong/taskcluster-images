@@ -15,6 +15,7 @@ RUN mkdir /kaniko-bootstrap
 COPY --from=image_builder --chmod=0755 /kaniko-bootstrap/skopeo /kaniko-bootstrap/skopeo
 COPY --from=image_builder --chmod=0755 /kaniko-bootstrap/executor /kaniko-bootstrap/executor
 COPY --from=image_builder --chmod=0755 /kaniko-bootstrap/build-image /kaniko-bootstrap/build-image
+COPY --from=image_builder /kaniko-bootstrap/containers/policy.json /kaniko-bootstrap/containers/policy.json
 
 # Add worker user
 RUN mkdir /builds && \
@@ -25,6 +26,7 @@ RUN mkdir /builds && \
 
 ENV SHELL=/bin/bash \
     HOME=/builds/worker \
-    USER=worker
+    USER=worker \
+    PATH=/usr/local/bin:/kaniko:/bin:/usr/bin
 
-WORKDIR /builds/worker
+WORKDIR /workspace
