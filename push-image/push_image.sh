@@ -22,6 +22,10 @@ cp -R $MOZ_FETCHES_DIR/* $VCS_PATH/taskcluster/docker/${NAME}
     --destination image \
     --dockerfile "$VCS_PATH/taskcluster/docker/${NAME}/Dockerfile" \
     --no-push --no-push-cache \
+    --cache=true --cache-dir=/workspace/cache \
+    --cache-repo=oci:/workspace/repo \
+    --compressed-caching=false \
+    --ignore-var-run=false \
     --single-snapshot \
     --tar-path /workspace/image.tar
 
