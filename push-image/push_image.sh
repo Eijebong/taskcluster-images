@@ -17,7 +17,13 @@ export REGISTRY_AUTH_FILE=$HOME/.dockercfg
 echo "=== Preparing docker image ==="
 
 cp -R $MOZ_FETCHES_DIR/* $VCS_PATH/taskcluster/docker/${NAME}
-cd $VCS_PATH/taskcluster/docker/${NAME} && podman build -t oci:${NAME}:final .
+/kaniko/executor --context dir:///$VCS_PATH/taskcluster/docker/${NAME} \
+    --destination image \
+    --dockerfile Dockerfile \
+    --no-push --no-push-cache \
+    --single-snapshot
+
+skopeo copy docker-archive:image.tar oci:${NAME}:final
 
 cat > version.json <<EOF
 {
