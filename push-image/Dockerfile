@@ -12,9 +12,9 @@ COPY run-task/hgrc /etc/mercurial/hgrc.d/mozilla.rc
 
 RUN mkdir /kaniko-bootstrap
 
-COPY --from=image_builder /kaniko-bootstrap/skopeo /kaniko-bootstrap/skopeo
-COPY --from=image_builder /kaniko-bootstrap/executor /kaniko-bootstrap/executor
-COPY --from=image_builder /kaniko-bootstrap/build-image /kaniko-bootstrap/build-image
+COPY --from=image_builder --chmod=0755 /kaniko-bootstrap/skopeo /kaniko-bootstrap/skopeo
+COPY --from=image_builder --chmod=0755 /kaniko-bootstrap/executor /kaniko-bootstrap/executor
+COPY --from=image_builder --chmod=0755 /kaniko-bootstrap/build-image /kaniko-bootstrap/build-image
 
 # Add worker user
 RUN mkdir /builds && \
