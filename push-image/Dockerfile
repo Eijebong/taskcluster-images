@@ -22,4 +22,5 @@ ENV SHELL=/bin/bash \
     HOME=/builds/worker \
     USER=worker
 
+WORKDIR /builds/worker
 VOLUME /var/lib/containers
