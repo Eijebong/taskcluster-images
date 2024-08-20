@@ -8,7 +8,7 @@ COPY run-task/fetch-content /usr/local/bin/fetch-content
 COPY run-task/robustcheckout.py /usr/local/mercurial/robustcheckout.py
 COPY run-task/hgrc /etc/mercurial/hgrc.d/mozilla.rc
 
-RUN usermod --add-subuids 10000-75535 root
-RUN usermod --add-subgids 10000-75535 root
+RUN echo "root:100000:65536" > /etc/subuid
+RUN echo "root:100000:65536" > /etc/subgid
 
 VOLUME /var/lib/containers
