@@ -1,5 +1,7 @@
 FROM mozillareleases/image_builder:5.1.0 AS image_builder
-FROM alpine:latest
+
+FROM empty
+FROM alpine:latest AS final
 
 RUN apk update && apk add --no-cache skopeo umoci bash coreutils python3 curl jq zstd git openssh-client
 COPY push_image.sh /usr/local/bin/push_image.sh
