@@ -22,9 +22,10 @@ cp -R $MOZ_FETCHES_DIR/* $VCS_PATH/taskcluster/docker/${NAME}
     --destination image \
     --dockerfile "$VCS_PATH/taskcluster/docker/${NAME}/Dockerfile" \
     --no-push --no-push-cache \
-    --single-snapshot
+    --single-snapshot \
+    --tar-path /workspace/image.tar
 
-skopeo copy docker-archive:image.tar oci:${NAME}:final
+skopeo copy docker-archive:/workspace/image.tar oci:${NAME}:final
 
 cat > version.json <<EOF
 {
