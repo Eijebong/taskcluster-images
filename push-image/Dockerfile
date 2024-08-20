@@ -23,7 +23,6 @@ RUN mkdir /builds && \
     mkdir /builds/worker/artifacts && \
     chown worker:worker /builds/worker/artifacts
 
-USER worker
 ENV SHELL=/bin/bash \
     HOME=/builds/worker \
     USER=worker
