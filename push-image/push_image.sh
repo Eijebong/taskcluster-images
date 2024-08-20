@@ -18,9 +18,8 @@ echo "=== Preparing docker image ==="
 
 cp -R $MOZ_FETCHES_DIR/* $VCS_PATH/taskcluster/docker/${NAME}
 
-buildah build --network=host -f "$VCS_PATH/taskcluster/docker/${NAME}/Dockerfile" -o type=tar,dest=/workspace/image.tar --manifest ${NAME} "$VCS_PATH/taskcluster/docker/${NAME}"
-
-skopeo copy docker-archive:/workspace/image.tar oci:${NAME}:final
+buildah build --network=host -f "$VCS_PATH/taskcluster/docker/${NAME}/Dockerfile" -t ${NAME}:final "$VCS_PATH/taskcluster/docker/${NAME}"
+buildah push ${NAME}:final oci:${NAME}:final
 
 cat > version.json <<EOF
 {
