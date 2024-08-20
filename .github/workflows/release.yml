@@ -15,6 +15,7 @@ jobs:
         image:
           - decision-task
           - push-image
+          - push-rust-image
 
     runs-on: ubuntu-latest
     steps:
