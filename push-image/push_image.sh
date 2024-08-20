@@ -17,7 +17,7 @@ export REGISTRY_AUTH_FILE=$HOME/.dockercfg
 echo "=== Preparing docker image ==="
 
 cp -R $MOZ_FETCHES_DIR/* $VCS_PATH/taskcluster/docker/${NAME}
-/kaniko/executor --context dir:///$VCS_PATH/taskcluster/docker/${NAME} \
+/kaniko-bootstrap/executor --context dir:///$VCS_PATH/taskcluster/docker/${NAME} \
     --destination image \
     --dockerfile Dockerfile \
     --no-push --no-push-cache \
