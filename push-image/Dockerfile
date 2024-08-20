@@ -15,8 +15,8 @@ RUN mkdir /builds && \
     mkdir /builds/worker/artifacts /workspace && \
     chown worker:worker /builds/worker/artifacts /workspace
 
-RUN echo "worker:100000:65536" > /etc/subuid
-RUN echo "worker:100000:65536" > /etc/subgid
+RUN echo "worker:1001:65536" > /etc/subuid
+RUN echo "worker:1001:65536" > /etc/subgid
 
 ENV SHELL=/bin/bash \
     HOME=/builds/worker \
