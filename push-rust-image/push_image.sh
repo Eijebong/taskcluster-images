@@ -28,7 +28,7 @@ cat > version.json <<EOF
     "build": "${TASKCLUSTER_ROOT_URL}/tasks/${TASK_ID}"
 }
 EOF
-COMMIT_COUNT=$(cd $VCS_PATH && git rev-list refs/heads/${VCS_HEAD_REF} --count)
+COMMIT_COUNT=$(cd $VCS_PATH && git rev-list HEAD --count)
 DOCKER_TAG=${VCS_HEAD_REF}-${COMMIT_COUNT}
 
 umoci insert --image ${NAME}:final version.json /version.json
