@@ -38,5 +38,7 @@ umoci insert --image ${NAME}:final version.json /version.json
 echo "=== Pushing image ==="
 
 skopeo copy oci:${NAME}:final docker://$DOCKER_REPO:$DOCKER_TAG
-skopeo copy oci:${NAME}:final docker://$DOCKER_REPO:${VCS_HEAD_REF}-latest
+if [[ "${VCS_HEAD_REF}" == "main" ]]; then
+    skopeo copy oci:${NAME}:final docker://$DOCKER_REPO:latest
+fi
 
