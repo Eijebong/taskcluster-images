@@ -5,5 +5,5 @@ RUN apt update && apt install -y openssh-client
 RUN pip install --break-system-packages git+https://github.com/Eijebong/taskgraph#commit=63e2e3ebb8d7559411adc0cff998518fa0bca013
 RUN cp /usr/local/lib/python3.11/dist-packages/taskgraph/run-task/run-task /usr/local/bin/run-task
 RUN cp /usr/local/lib/python3.11/dist-packages/taskgraph/run-task/fetch-content /usr/local/bin/fetch-content
-RUN pip install --break-system-packages git+https://github.com/Eijebong/eije-taskgraph#commit=95b571454bbd8871c8f27b7d047a1a4e6553ef38
+RUN pip install --break-system-packages git+https://github.com/Eijebong/eije-taskgraph#commit=c33df7e58835088d7bd3835927c5326fd46d854c
 RUN pip install --break-system-packages toml
