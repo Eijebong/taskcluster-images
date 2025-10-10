@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.source=https://github.com/eijebong/taskcluster-de
 RUN apt update && apt install -y openssh-client jq
 
 # XXX: This is to test some taskgraph stuff, remove once it's tested
-RUN pip install --break-system-packages -e git+https://github.com/Eijebong/taskgraph@1c580521aae08131f05b53856211e0aef515aff5#egg=taskcluster-taskgraph
+RUN pip install --break-system-packages -e git+https://github.com/Eijebong/taskgraph@57f34f97f54b1a7c58cf3e7b5fc07667c0162222#egg=taskcluster-taskgraph
 RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/run-task /usr/local/bin/run-task
 RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/fetch-content /usr/local/bin/fetch-content
 
