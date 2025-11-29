@@ -8,5 +8,5 @@ RUN apt update && apt install -y openssh-client jq
 # RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/run-task /usr/local/bin/run-task
 # RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/fetch-content /usr/local/bin/fetch-content
 
-RUN pip install --break-system-packages git+https://github.com/Eijebong/eije-taskgraph#316b4c9abbce43fc3428dceaac6150f2a2a08a25
+RUN pip install --break-system-packages git+https://github.com/Eijebong/eije-taskgraph#40f1f04de15ebc609e217881a43160c31593e3bc
 RUN pip install --break-system-packages toml
