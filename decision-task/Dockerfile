@@ -1,4 +1,4 @@
-FROM mozillareleases/taskgraph:decision-v17.3.0
+FROM mozillareleases/taskgraph:decision-v18.0.3
 LABEL org.opencontainers.image.source=https://github.com/eijebong/taskcluster-decision-task-image
 
 RUN apt update && apt install -y openssh-client jq
