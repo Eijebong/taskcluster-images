@@ -1,4 +1,4 @@
-FROM mozillareleases/taskgraph:decision-v18.0.3
+FROM mozillareleases/taskgraph:decision-v20.0.0
 LABEL org.opencontainers.image.source=https://github.com/eijebong/taskcluster-decision-task-image
 
 RUN apt update && apt install -y openssh-client jq
@@ -8,5 +8,5 @@ RUN apt update && apt install -y openssh-client jq
 # RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/run-task /usr/local/bin/run-task
 # RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/fetch-content /usr/local/bin/fetch-content
 
-RUN pip install --break-system-packages git+https://github.com/Eijebong/eije-taskgraph#e057fc07346d9e5a99dd6bacf2e5c77474990c96
+RUN pip install --break-system-packages git+https://github.com/Eijebong/eije-taskgraph#f29fa0a062805ca52b84bd513d23542dc619f92b
 RUN pip install --break-system-packages toml semver
