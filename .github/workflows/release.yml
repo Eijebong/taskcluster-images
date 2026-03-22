@@ -1,7 +1,6 @@
 on:
   push:
-    branches: [main]
-    tags: ['*']
+    branches: ['**']
 
 name: Deploy
 
@@ -20,6 +19,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Determine image tags
+        id: tags
+        run: |
+          BASE="ghcr.io/eijebong/taskcluster-images/${{ matrix.image }}"
+          TAGS="${BASE}:${{ github.ref_name }}"
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            LATEST_TAG=$(git describe --tags --abbrev=0)
+            TAGS="${TAGS},${BASE}:${LATEST_TAG}"
+          fi
+          echo "value=${TAGS}" >> "$GITHUB_OUTPUT"
       - uses: docker/setup-buildx-action@v1
       - uses: docker/login-action@v1
         with:
@@ -29,5 +40,5 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/eijebong/taskcluster-images/${{ matrix.image }}:${{ github.ref_name }}
+          tags: ${{ steps.tags.outputs.value }}
           context: ${{ matrix.image }}
