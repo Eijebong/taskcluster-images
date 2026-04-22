@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.source=https://github.com/eijebong/taskcluster-de
 RUN apt update && apt install -y openssh-client jq
 
 # XXX: Uncomment to test taskgraph versions, it'll override whatever is in the decision task image
- RUN pip install --break-system-packages -e git+https://github.com/Eijebong/taskgraph@cd9edd80325090ffafd76d299856cb6bc30dc88f#egg=taskcluster-taskgraph
+ RUN pip install --break-system-packages -e git+https://github.com/Eijebong/taskgraph@f4f04b7f556a8ccdd59e404736b1ac94cb70f252#egg=taskcluster-taskgraph
  RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/run-task /usr/local/bin/run-task
  RUN cp /src/taskcluster-taskgraph/src/taskgraph/run-task/fetch-content /usr/local/bin/fetch-content
 
