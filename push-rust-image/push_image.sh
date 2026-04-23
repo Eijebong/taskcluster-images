@@ -12,6 +12,7 @@ mkdir -p /kaniko/.docker
 
 curl -s "${PASSWORD_URL}" | jq -r '.secret.dockercfg' > /kaniko/.docker/config.json
 chmod 600 /kaniko/.docker/config.json
+export DOCKER_CONFIG=/kaniko/.docker
 
 echo "=== Preparing build context ==="
 CONTEXT="$VCS_PATH/taskcluster/docker/${NAME}"
