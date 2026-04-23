@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.22
 
 RUN apk update && apk add --no-cache skopeo umoci bash coreutils python3 curl jq zstd git openssh-client buildah netavark iptables
 COPY push_image.sh /usr/local/bin/push_image.sh
