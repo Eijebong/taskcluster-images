@@ -2,6 +2,8 @@
 
 set -e
 
+export STORAGE_DRIVER=vfs
+
 test $NAME
 test $DOCKER_REPO
 test $VCS_HEAD_REV
