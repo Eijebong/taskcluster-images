@@ -10,7 +10,7 @@ echo "=== Generating docker config ==="
 PASSWORD_URL="http://taskcluster/secrets/v1/secret/github_deploy"
 mkdir -p /kaniko/.docker
 
-curl -s "${PASSWORD_URL}" | jq '.secret.dockercfg | if has("auths") then . else {auths: .} end' > /kaniko/.docker/config.json
+curl -s "${PASSWORD_URL}" | jq -r '.secret.dockercfg' > /kaniko/.docker/config.json
 chmod 600 /kaniko/.docker/config.json
 
 echo "=== Preparing build context ==="
