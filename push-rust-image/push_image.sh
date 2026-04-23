@@ -3,6 +3,7 @@
 set -e
 
 export STORAGE_DRIVER=vfs
+export BUILDAH_ISOLATION=chroot
 
 test $NAME
 test $DOCKER_REPO
